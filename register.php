@@ -5,6 +5,7 @@
 	$lastName = $inData["lastName"];
 	$userId = $inData["userId"];
 	$Login = $inData["Login"];
+	$Password = $inData["Password"];
 	// COMMENT
 
 	$conn = new mysqli("localhost", "admin", "COP4331_7g", "COP4331");
