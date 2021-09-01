@@ -3,7 +3,7 @@
 
 	$firstName = $inData["firstName"];
 	$lastName = $inData["lastName"];
-	$userId = $inData["userId"];
+	$userId = $inData["userId"];	// check this later to make sure userId auto increments
 	$Login = $inData["Login"];
 	$Password = $inData["Password"];
 	// COMMENT
