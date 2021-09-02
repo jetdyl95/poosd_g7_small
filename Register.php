@@ -24,15 +24,19 @@
 		if( $row = $result->fetch_assoc()  )
 		{
 			returnWithError("User already exists");
+
 		}
 
-		// user does not already exist
-		$stmt = $conn->prepare("INSERT into Users (firstName,lastName,Login,Password) VALUES(?,?,?,?)");
-		$stmt->bind_param("ssss", $firstName, $lastName, $Login, $Password);
-		$stmt->execute();
-		$stmt->close();
-		$conn->close();
-		returnWithError("");
+		else
+		{
+			// user does not already exist
+			$stmt = $conn->prepare("INSERT into Users (firstName,lastName,Login,Password) VALUES(?,?,?,?)");
+			$stmt->bind_param("ssss", $firstName, $lastName, $Login, $Password);
+			$stmt->execute();
+			$stmt->close();
+			$conn->close();
+			returnWithError("");
+		}
 	}
 
 	function getRequestInfo()
