@@ -16,15 +16,15 @@
 	else
 	{
 		// check for already existing user
-		$stmt = $conn->prepare("SELECT Login FROM Users WHERE Login=?");
-		$stmt->bind_param("s", $inData["Login"]);
-		$stmt->execute();
-		$result = $stmt->get_result();
+		$checkLoginExists = $conn->prepare("SELECT Login FROM Users WHERE Login=?");
+		$checkLoginExists->bind_param("s", $inData["Login"]);
+		$checkLoginExists->execute();
+		$result = $checkLoginExists->get_result();
+		$checkLoginExists->close();
 
 		if( $row = $result->fetch_assoc()  )
 		{
 			returnWithError("User already exists");
-
 		}
 
 		else
@@ -34,9 +34,10 @@
 			$stmt->bind_param("ssss", $firstName, $lastName, $Login, $Password);
 			$stmt->execute();
 			$stmt->close();
-			$conn->close();
 			returnWithError("");
 		}
+
+		$conn->close();
 	}
 
 	function getRequestInfo()
