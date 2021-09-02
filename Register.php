@@ -12,19 +12,15 @@
 	{
 		returnWithError( $conn->connect_error );
 	}
+
 	else
 	{
+		$LoginQuotes = "'" . $Login . "'";
+		$sql = "select * from Users where Login like $LoginQuotes";
+		$result = $conn->query($sql);
+
 		$stmt = $conn->prepare("INSERT into Users (firstName,lastName,Login,Password) VALUES(?,?,?,?)");
 		$stmt->bind_param("ssss", $firstName, $lastName, $Login, $Password);
-
-		/*
-			$Date = $conn->query(select now());
-			$stmt = $conn->prepare("INSERT into Users (DateCreated,DateLastLoggedIn,FirstName,LastName,Login,Password) VALUES(?,?,?,?,?,?)");
-			$stmt->bind_param("ssssss", $Date, $Date, $firstName, $lastName, $Login, $Password);
-
-	 */
-		//$stmt = $conn->prepare("INSERT into Users (UserId,DateCreated,DateLastLoggedIn,FirstName,LastName,Login,Password) VALUES(?,?,?,?,?,?,?)");
-		//$stmt->bind_param("sssssss", $userId, $Date, $Date, $firstName, $lastName, $Login, $Password);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
