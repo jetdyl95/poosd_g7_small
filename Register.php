@@ -15,10 +15,18 @@
 
 	else
 	{
-		$LoginQuotes = "'" . $Login . "'";
-		$sql = "select * from Users where Login like $LoginQuotes";
-		$result = $conn->query($sql);
+		// check for already existing user
+		$stmt = $conn->prepare("SELECT Login FROM Users WHERE Login=?");
+		$stmt->bind_param("s", $inData["Login"]);
+		$stmt->execute();
+		$result = $stmt->get_result();
 
+		if( $row = $result->fetch_assoc()  )
+		{
+			returnWithError("User already exists");
+		}
+
+		// user does not already exist
 		$stmt = $conn->prepare("INSERT into Users (firstName,lastName,Login,Password) VALUES(?,?,?,?)");
 		$stmt->bind_param("ssss", $firstName, $lastName, $Login, $Password);
 		$stmt->execute();
