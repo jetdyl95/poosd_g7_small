@@ -1,0 +1,166 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "This is the API documentation for the COP 4331 Demo Color App",
+    "version" : "1.0.0",
+    "title" : "The Groovy Color App",
+    "contact" : {
+      "email" : "Richard.Leinecker@ucf.edu"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host" : "COP4331-7.com",
+  "basePath" : "/LAMPAPI",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/Login.php" : {
+      "post" : {
+        "tags" : [ "Users" ],
+        "summary" : "Logs in to the colors app",
+        "description" : "Logs in to colors app",
+        "operationId" : "doLogin",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "loginItem",
+          "description" : "Login",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Login"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "404" : {
+            "description" : "URL Not Found"
+          }
+        }
+      }
+    },
+    "/Register.php" : {
+      "post" : {
+        "tags" : [ "Users" ],
+        "summary" : "Adds a user to our database",
+        "description" : "Adds a user to the user database",
+        "operationId" : "addUser",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "registerItem",
+          "description" : "User",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Register"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "404" : {
+            "description" : "URL Not Found"
+          }
+        }
+      }
+    },
+    "/SearchColors.php" : {
+      "post" : {
+        "tags" : [ "Search" ],
+        "summary" : "Searches colors",
+        "description" : "Searches colors from the color app database",
+        "operationId" : "searchColor",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "searchItem",
+          "description" : "Color Search",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Search"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "404" : {
+            "description" : "URL Not Found"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Register" : {
+      "type" : "object",
+      "required" : [ "Login", "Password", "firstName", "lastName" ],
+      "properties" : {
+        "firstName" : {
+          "type" : "string",
+          "example" : "Richard"
+        },
+        "lastName" : {
+          "type" : "string",
+          "example" : "Leinecker"
+        },
+        "Login" : {
+          "type" : "string",
+          "example" : "profLein05"
+        },
+        "Password" : {
+          "type" : "string",
+          "example" : "password123"
+        }
+      }
+    },
+    "Login" : {
+      "type" : "object",
+      "properties" : {
+        "login" : {
+          "type" : "string",
+          "example" : "knightro"
+        },
+        "password" : {
+          "type" : "string",
+          "example" : "secret"
+        }
+      }
+    },
+    "Color" : {
+      "type" : "object",
+      "required" : [ "color", "userId" ],
+      "properties" : {
+        "userId" : {
+          "type" : "integer",
+          "example" : 1
+        },
+        "color" : {
+          "type" : "string",
+          "example" : "Blue Green"
+        }
+      }
+    },
+    "Search" : {
+      "type" : "object",
+      "required" : [ "search", "userId" ],
+      "properties" : {
+        "userId" : {
+          "type" : "integer",
+          "example" : 1
+        },
+        "search" : {
+          "type" : "string",
+          "example" : "bl"
+        }
+      }
+    }
+  }
+}
