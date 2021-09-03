@@ -70,6 +70,60 @@
         }
       }
     },
+    "/Search.php" : {
+      "post" : {
+        "tags" : [ "Search" ],
+        "summary" : "Searches contacts",
+        "description" : "Searches contacts from contact database",
+        "operationId" : "searchContacts",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "searchItem",
+          "description" : "Contact Search",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Search"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "404" : {
+            "description" : "URL Not Found"
+          }
+        }
+      }
+    },
+    "/Delete.php" : {
+      "post" : {
+        "tags" : [ "Delete" ],
+        "summary" : "Deletes contacts",
+        "description" : "Deletes contacts from a user",
+        "operationId" : "delContact",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "deleteItem",
+          "description" : "Contact Delete",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Delete"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "404" : {
+            "description" : "URL Not Found"
+          }
+        }
+      }
+    },
     "/SearchColors.php" : {
       "post" : {
         "tags" : [ "Search" ],
@@ -134,31 +188,31 @@
         }
       }
     },
-    "Color" : {
+    "Search" : {
       "type" : "object",
-      "required" : [ "color", "userId" ],
+      "required" : [ "id", "searchTerm" ],
       "properties" : {
-        "userId" : {
+        "id" : {
           "type" : "integer",
           "example" : 1
         },
-        "color" : {
+        "searchTerm" : {
           "type" : "string",
-          "example" : "Blue Green"
+          "example" : "Chris"
         }
       }
     },
-    "Search" : {
+    "Delete" : {
       "type" : "object",
-      "required" : [ "search", "userId" ],
+      "required" : [ "contactId", "userId" ],
       "properties" : {
         "userId" : {
           "type" : "integer",
           "example" : 1
         },
-        "search" : {
-          "type" : "string",
-          "example" : "bl"
+        "contactId" : {
+          "type" : "integer",
+          "example" : 1
         }
       }
     }
