@@ -22,7 +22,7 @@
 		$result = $checkLoginExists->get_result();
 		$checkLoginExists->close();
 
-		if( $row = $result->fetch_assoc()  )
+		if( $row = $result->fetch_assoc())
 		{
 			returnWithError("User already exists");
 		}
