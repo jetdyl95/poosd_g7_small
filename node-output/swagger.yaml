@@ -204,7 +204,7 @@
     },
     "Edit" : {
       "type" : "object",
-      "required" : [ "fields", "input" ],
+      "required" : [ "contactId", "fields", "input", "userId" ],
       "properties" : {
         "fields" : {
           "type" : "array",
@@ -222,6 +222,14 @@
           "items" : {
             "type" : "string"
           }
+        },
+        "contactId" : {
+          "type" : "integer",
+          "example" : 1
+        },
+        "userId" : {
+          "type" : "integer",
+          "example" : 2
         }
       }
     },
