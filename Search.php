@@ -1,6 +1,7 @@
 <?php
   $inData = getRequestInfo();
   $searchTerm = $inData["searchTerm"];
+  $searchTerm = "%".$searchTerm."%";
 
   $searchResults = "";
   $searchCount = 0;
@@ -13,8 +14,8 @@
 
   else
   {
-    $searchQuery = $conn->prepare("SELECT id FROM Contacts WHERE firstName OR lastName OR email LIKE ? AND id = ?")
-    $searchQuery->bind_param("ss", $searchTerm, $inData["id"]);
+    $searchQuery = $conn->prepare("SELECT id FROM Contacts WHERE firstName LIKE ? OR lastName LIKE ? OR email LIKE ? AND id = ?");
+    $searchQuery->bind_param("ssss", $searchTerm, $searchTerm, $searchTerm, $inData["id"]);
     $searchQuery->execute();
     $result = $searchQuery->get_result();
 
@@ -25,14 +26,14 @@
 				$searchResults .= ",";
 			}
 			$searchCount++;
-			$searchResults .= '"' . $row["firstName"] . '"';
+			$searchResults .= '"' . $row["id"] . '"';
     }
 
 
 
     if ($searchCount == 0)
     {
-      returnWithError("No Contacts Found")
+      returnWithError("No Contacts Found");
     }
 
     else
