@@ -1,65 +1,63 @@
 <?php
   $inData = getRequestInfo();
-  $fields = $inData['fields'];
-  $inputs = $inData['inputs'];
+  $fields = $inData["fields"];
+  $input = $inData["input"];
+  $contactId = $inData["contactId"];
+  $userId = $inData["userId"];
 
   $conn = new mysqli("localhost", "admin", "COP4331_7g", "COP4331");
   if ($conn->connect_error)
 	{
 		returnWithError( $conn->connect_error );
 	}
-
   else
   {
-    $doFirstNameEdit = $fields['firstName'];
-    $doLastNameEdit = $fields['lastName'];
-    $doEmailEdit = $fields['email'];
-    $doPhoneEdit = $fields['phone'];
+    $doFirstNameEdit = $fields["firstName"];
+    $doLastNameEdit = $fields["lastName"];
+    $doEmailEdit = $fields["email"];
+    $doPhoneEdit = $fields["phone"];
 
-    $editQuery = $conn->prepare("UPDATE Contacts SET ? = ? WHERE (id = $inData['contactId'] AND userId = $inData['userId'])");
+    $fNameEdit = $conn->prepare("UPDATE Contacts SET firstName = ? WHERE id = $contactId AND userId = $userId");
+    $lNameEdit = $conn->prepare("UPDATE Contacts SET lastName = ? WHERE id = $contactId AND userId = $userId");
+    $emailEdit = $conn->prepare("UPDATE Contacts SET email = ? WHERE id = $contactId AND userId = $userId");
+    $phoneEdit = $conn->prepare("UPDATE Contacts SET phone = ? WHERE id = $contactId AND userId = $userId");
     $editCount = 0;
 
     if ($doFirstNameEdit)
     {
-      $editQuery->bind_param("ss", 'firstName', $fields['firstName']);
-      $editQuery->execute();
+      $fNameEdit->bind_param("s", $input["firstName"]);
+      $fNameEdit->execute();
       $editCount++;
     }
 
     if ($doLastNameEdit)
     {
-      $editQuery->bind_param("ss", 'lastName', $fields['lastName']);
-      $editQuery->execute();
+      $lNameEdit->bind_param("s", $input["lastName"]);
+      $lNameEdit->execute();
       $editCount++;
     }
 
     if ($doEmailEdit)
     {
-      $editQuery->bind_param("ss", 'email', $fields['email']);
-      $editQuery->execute();
+      $emailEdit->bind_param("s", $input["email"]);
+      $emailEdit->execute();
       $editCount++;
     }
 
     if ($doPhoneEdit)
     {
-      $editQuery->bind_param("ss", 'phone', $fields['phone']);
-      $editQuery->execute();
+      $phoneEdit->bind_param("ss", $input["phone"]);
+      $phoneEdit->execute();
       $editCount++;
     }
+  }
 
-    returnWithError($editCount);
-    $conn->close();
-    $editQuery->close();
-  }
-  /*
-  foreach ($fields as $key => $i)
-  {
-    foreach ($i as $key => $value)
-    {
-      echo $i;
-    }
-  }
-*/
+  $conn->close();
+  $fNameEdit->close();
+  $lNameEdit->close();
+  $emailEdit->close();
+  $phoneEdit->close();
+
   function getRequestInfo()
   {
     return json_decode(file_get_contents('php://input'), true);
