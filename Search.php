@@ -14,8 +14,8 @@
 
   else
   {
-    $searchQuery = $conn->prepare("SELECT id FROM Contacts WHERE firstName LIKE ? OR lastName LIKE ? OR email LIKE ? AND id = ?");
-    $searchQuery->bind_param("ssss", $searchTerm, $searchTerm, $searchTerm, $inData["id"]);
+    $searchQuery = $conn->prepare("SELECT id FROM Contacts WHERE (firstName LIKE ? OR lastName LIKE ? OR email LIKE ? OR phone LIKE ?) AND userId = ?");
+    $searchQuery->bind_param("sssss", $searchTerm, $searchTerm, $searchTerm, $searchTerm, $inData["userId"]);
     $searchQuery->execute();
     $result = $searchQuery->get_result();
 
@@ -26,7 +26,10 @@
 				$searchResults .= ",";
 			}
 			$searchCount++;
-			$searchResults .= '"' . $row["id"] . '"';
+      $searchResults .= '"' . $row["firstName"] . '"';
+      $searchResults .= '"' . $row["lastName"] . '"';
+      $searchResults .= '"' . $row["email"] . '"';
+      $searchResults .= '"' . $row["phone"] . '"';
     }
 
 
@@ -38,7 +41,7 @@
 
     else
     {
-      returnWithError("");
+      returnWithError($searchCount . " records found.");
     }
 
     $conn->close();
