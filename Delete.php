@@ -11,26 +11,23 @@
 
   else
   {
-    $checkContactExists = $conn->prepare("SELECT FROM Contacts WHERE userId = ? AND contactId = ?");
-    $checkContactExists = $conn->bind_param("ss", $userId, $contactId);
-    $checkContactExists->execute();
-    $result = $checkContactExists->get_result();
+    $delQuery = $conn->prepare("DELETE FROM Contacts WHERE userId = ? AND id = ?");
+    $delQuery->bind_param("ss", $userId, $contactId);
+    $delQuery->execute();
+    $affectedRows = $conn->affected_rows;
 
-    if ($row = result->fetch_assoc())
+    if ($affectedRows == 0)
     {
-      $delQuery = $conn->prepare("DELETE FROM Contacts WHERE userId = ? AND contactId = ?");
-      $delQuery = $conn->bind_param("ss", $userId, $contactId);
-      $delQuery->execute();
-      returnWithError("");
+      returnWithError("Contact not found, deletion failed.");
     }
 
     else
     {
-      returnWithError("Could Not Find Contact. Deletion Failed.");
+      returnWithError("");
     }
 
     $conn->close();
-    $checkContactExists->close();
+    //$checkContactExists->close();
     $delQuery->close();
   }
 

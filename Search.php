@@ -14,7 +14,7 @@
 
   else
   {
-    $searchQuery = $conn->prepare("SELECT id FROM Contacts WHERE (firstName LIKE ? OR lastName LIKE ? OR email LIKE ? OR phone LIKE ?) AND userId = ?");
+    $searchQuery = $conn->prepare("SELECT * FROM Contacts WHERE (firstName LIKE ? OR lastName LIKE ? OR email LIKE ? OR phone LIKE ?) AND userId = ?");
     $searchQuery->bind_param("sssss", $searchTerm, $searchTerm, $searchTerm, $searchTerm, $inData["userId"]);
     $searchQuery->execute();
     $result = $searchQuery->get_result();
