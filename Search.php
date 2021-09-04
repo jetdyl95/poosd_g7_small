@@ -13,7 +13,7 @@
 
   else
   {
-    $searchQuery = $conn->prepare("SELECT * FROM Contacts WHERE firstName OR lastName OR email LIKE ? AND id = ?")
+    $searchQuery = $conn->prepare("SELECT id FROM Contacts WHERE firstName OR lastName OR email LIKE ? AND id = ?")
     $searchQuery->bind_param("ss", $searchTerm, $inData["id"]);
     $searchQuery->execute();
     $result = $searchQuery->get_result();
