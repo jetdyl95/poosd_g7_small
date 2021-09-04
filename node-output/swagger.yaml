@@ -72,7 +72,7 @@
     },
     "/Search.php" : {
       "post" : {
-        "tags" : [ "Search" ],
+        "tags" : [ "Contacts" ],
         "summary" : "Searches contacts",
         "description" : "Searches contacts from contact database",
         "operationId" : "searchContacts",
@@ -97,21 +97,21 @@
         }
       }
     },
-    "/Delete.php" : {
+    "/Edit.php" : {
       "post" : {
-        "tags" : [ "Delete" ],
-        "summary" : "Deletes contacts",
-        "description" : "Deletes contacts from a user",
-        "operationId" : "delContact",
+        "tags" : [ "Contacts" ],
+        "summary" : "Edits contacts in Contacts database",
+        "description" : "Edits contacts",
+        "operationId" : "editContact",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "body",
-          "name" : "deleteItem",
-          "description" : "Contact Delete",
+          "name" : "editItem",
+          "description" : "Edit",
           "required" : false,
           "schema" : {
-            "$ref" : "#/definitions/Delete"
+            "$ref" : "#/definitions/Edit"
           }
         } ],
         "responses" : {
@@ -124,21 +124,21 @@
         }
       }
     },
-    "/SearchColors.php" : {
+    "/Delete.php" : {
       "post" : {
-        "tags" : [ "Search" ],
-        "summary" : "Searches colors",
-        "description" : "Searches colors from the color app database",
-        "operationId" : "searchColor",
+        "tags" : [ "Contacts" ],
+        "summary" : "Deletes contacts",
+        "description" : "Deletes contacts from a user",
+        "operationId" : "delContact",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "body",
-          "name" : "searchItem",
-          "description" : "Color Search",
+          "name" : "deleteItem",
+          "description" : "Contact Delete",
           "required" : false,
           "schema" : {
-            "$ref" : "#/definitions/Search"
+            "$ref" : "#/definitions/Delete"
           }
         } ],
         "responses" : {
@@ -190,15 +190,38 @@
     },
     "Search" : {
       "type" : "object",
-      "required" : [ "id", "searchTerm" ],
+      "required" : [ "searchTerm", "userId" ],
       "properties" : {
-        "id" : {
+        "userId" : {
           "type" : "integer",
           "example" : 1
         },
         "searchTerm" : {
           "type" : "string",
           "example" : "Chris"
+        }
+      }
+    },
+    "Edit" : {
+      "type" : "object",
+      "required" : [ "fields", "input" ],
+      "properties" : {
+        "fields" : {
+          "type" : "array",
+          "items" : {
+            "type" : "integer",
+            "example" : ""
+          }
+        },
+        "input" : {
+          "type" : "array",
+          "example" : {
+            "firstName" : "Richard",
+            "lastName" : "Leinecker"
+          },
+          "items" : {
+            "type" : "string"
+          }
         }
       }
     },
