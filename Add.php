@@ -2,7 +2,7 @@
 
   $inData = getRequestInfo();
   $fields = $inData["fields"];
-  $userId = $inData["userId"];
+  $userId = $inData["UserID"];
 
   $firstName = $fields["FirstName"];
   $lastName = $fields["LastName"];
