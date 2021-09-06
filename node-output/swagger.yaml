@@ -1,9 +1,9 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "This is the API documentation for the COP 4331 Demo Color App",
+    "description" : "This is the API documentation for the COP 4331 Contact Manager App",
     "version" : "1.0.0",
-    "title" : "The Groovy Color App",
+    "title" : "Contact Manager App Group 7",
     "contact" : {
       "email" : "Richard.Leinecker@ucf.edu"
     },
@@ -19,8 +19,8 @@
     "/Login.php" : {
       "post" : {
         "tags" : [ "Users" ],
-        "summary" : "Logs in to the colors app",
-        "description" : "Logs in to colors app",
+        "summary" : "Logs in to the contact manager app",
+        "description" : "Logs in to contact manager app",
         "operationId" : "doLogin",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
@@ -85,6 +85,33 @@
           "required" : false,
           "schema" : {
             "$ref" : "#/definitions/Search"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "404" : {
+            "description" : "URL Not Found"
+          }
+        }
+      }
+    },
+    "/Add.php" : {
+      "post" : {
+        "tags" : [ "Contacts" ],
+        "summary" : "Adds contacts in Contacts database",
+        "description" : "Adds contacts",
+        "operationId" : "addContact",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "addItem",
+          "description" : "Add",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Add"
           }
         } ],
         "responses" : {
@@ -180,7 +207,7 @@
       "properties" : {
         "login" : {
           "type" : "string",
-          "example" : "knightro"
+          "example" : "username"
         },
         "password" : {
           "type" : "string",
@@ -202,22 +229,51 @@
         }
       }
     },
+    "Add" : {
+      "type" : "object",
+      "required" : [ "UserID", "fields" ],
+      "properties" : {
+        "fields" : {
+          "type" : "array",
+          "example" : {
+            "FirstName" : "Charles",
+            "LastName" : "Darwin",
+            "Email" : "charles-darwin@example.com",
+            "Phone" : "407-112-1112"
+          },
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "UserID" : {
+          "type" : "integer",
+          "example" : 2
+        }
+      }
+    },
     "Edit" : {
       "type" : "object",
       "required" : [ "contactId", "fields", "input", "userId" ],
       "properties" : {
         "fields" : {
           "type" : "array",
+          "example" : {
+            "firstName" : 1,
+            "lastName" : 1,
+            "email" : 0,
+            "phone" : 0
+          },
           "items" : {
-            "type" : "integer",
-            "example" : ""
+            "type" : "integer"
           }
         },
         "input" : {
           "type" : "array",
           "example" : {
             "firstName" : "Richard",
-            "lastName" : "Leinecker"
+            "lastName" : "Leinecker",
+            "email" : "",
+            "phone" : ""
           },
           "items" : {
             "type" : "string"
