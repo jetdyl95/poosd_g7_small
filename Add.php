@@ -1,4 +1,5 @@
 <?php
+try{
   $inData = getRequestInfo();
   $fields = $inData["fields"];
   $userId = $inData["userId"];
@@ -11,14 +12,17 @@
   else
   {
     $stmt = $conn->prepare("INSERT into Contacts (userId, firstName,lastName,email,phone) VALUES(?,?,?,?,?)");
-    $stmt->bind_param("sssss", $userId, $firstName, $lastName, $email, $phone);
+    $stmt->bind_param("issss", $userId, $firstName, $lastName, $email, $phone);
     $stmt->execute();
     $stmt->close();
     returnWithError("");
   }
 
   $conn->close();
-
+} catch(Exception $e)
+{
+  sendResultInfoAsJson('{"error":"error in add function"}');
+}
 
   function getRequestInfo()
   {
