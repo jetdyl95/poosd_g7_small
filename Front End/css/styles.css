@@ -1,9 +1,9 @@
-body 
+body
 {
     background-color: rgb(119, 119, 119);
 }
 
-#title 
+#title
 {
     font-size: 40px;
     width: 100%;
@@ -16,7 +16,7 @@ body
 
 #loginDiv
 {
-    font-size: 30px;
+    font-size: 25px;
     width: 70%;
     margin-left: 15%;
     padding: 25px;
@@ -72,6 +72,18 @@ body
 #loginPassword
 {
 	font-size: 30px;
+}
+#registerName
+{
+	font-size: 30px;
+}
+#registerPassword
+{
+	font-size: 30px;
+}
+#confirmPassword
+{
+  font-size: 30px;
 }
 #searchText
 {

@@ -4,7 +4,7 @@
 	<title>iContact</title>
 	<script type="text/javascript" src="js/md5.js"></script>
 	<script type="text/javascript" src="js/code_contact.js"></script>
-    <link href="css/styles.css" rel="stylesheet">	
+    <link href="css/styles.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 </head>
 <body>
@@ -12,8 +12,22 @@
 <h1 id="title">Register Page Temp</h1>
 
 <div id="registerDiv">
-	<button type="button" id="SearchButton" class="buttons" onclick="gotoSearch();"> Search</button>
+	<input type="text" required="required" id="registerName" placeholder="Username">
+	<input type="password" required="required" id="registerPassword" placeholder="Password">
+	<input type="password" required="required"id="confirmPassword" placeholder="Confirm Password" oninput="check(this)">
+	<button type="button" id="SearchButton" class="buttons" onclick="gotoSearch();"> Sign Up</button>
 </div>
 
 </body>
 </html>
+
+<script language='javascript' type='text/javascript'>
+    function check(input) {
+        if (input.value != document.getElementById('registerPassword').value) {
+            input.setCustomValidity('Password Must be Matching.');
+        } else {
+            // input is valid -- reset the error message
+            input.setCustomValidity('');
+        }
+    }
+</script>

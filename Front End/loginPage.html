@@ -4,15 +4,21 @@
 	<title>iContact</title>
 	<script type="text/javascript" src="js/md5.js"></script>
 	<script type="text/javascript" src="js/code_contact.js"></script>
-    <link href="css/styles.css" rel="stylesheet">	
+    <link href="css/styles.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 </head>
 <body>
 
-<h1 id="title">Login Page Temp</h1>
+<h1 id="title">Login</h1>
+
+<div id = "loginDiv">
+	<input type="text" id="loginName" placeholder="Username">
+	<input type="password" id="loginPassword" placeholder="Password">
+</div>
 
 <div id="afterloginDiv">
-	<button type="button" id="SearchButton" class="buttons" onclick="gotoSearch();"> Search</button>
+	<button type="button" id="LoginButton" class="buttons" onclick="gotoSearch();"> Log In</button>
+	<button type="button" id="registerButton" class="buttons" onclick="gotoRegister();"> Sign Up</button>
 </div>
 
 </body>
