@@ -137,6 +137,10 @@ input[type="text"],input[type="password"]{
     margin-left: 40%;
 }
 
+#addButton{
+  margin-left: 25%
+}
+
 select{
     width: 30%;
     margin-left: 35%;
