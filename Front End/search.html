@@ -80,19 +80,32 @@
 	</p><br /><br />
 
 	<input type="text" id="contactDeleteText" placeholder="Contact To Delete">
-	<button type="button" id="deleteContactButton" class="buttons" onclick="deleteContact();"> Delete Contact </button><br />
+	<button type="button" id="deleteContactButton" class="buttons" onclick="confirmBox();"> Delete Contact </button><br />
 	<span id="contactDeleteResult"></span>
 	</div>
 
 </body>
 
 	<script>
-		// Get the button, and when the user clicks on it, execute myFunction
-	document.getElementById("myBtn").onclick = function() {myFunction()};
+		// Get the button, and when the user clicks on it, execute dropFunction
+	document.getElementById("myBtn").onclick = function() {dropFunction()};
 	
 	/* myFunction toggles between adding and removing the show class, which is used to hide and show the dropdown content */
-	function myFunction() {
+	function dropFunction() 
+	{
 	  document.getElementById("myDropdown").classList.toggle("show");
+	}
+
+	function confirmBox() 
+	{
+		var txt;
+		var r = confirm("Delete Contact?");
+		if (r == true) {
+			txt = "pressed OK";
+		} else {
+			txt = "pressed Cancel";
+		}
+		document.getElementById("deleteContactButton").innerHTML = txt;
 	}
 	</script>
 </html>
