@@ -1,8 +1,8 @@
-<!DOCTYPE html>
 <html>
 <head>
 	<title>iContact</title>
-	<script type="text/javascript" src="js/code_contact.js"></script>
+	<script type="text/javascript" src="js/cookie.js"></script>
+	<script type="text/javascript" src="js/edit.js"></script>
     <link href="css/styles.css" rel="stylesheet">	
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 	
@@ -72,14 +72,19 @@
 	<p id="contactList">
 	</p><br /><br />
 
-    <input type="text" id="FnameText" placeholder="First Name"><br />
-	
-    <input type="text" id="LnameText" placeholder="Last Name"><br />
+    	<input type="checkbox" id ="fnameCheckBox" value= "First Name">
+	<input type="text" id="FnameText" placeholder="First Name"><br />
 
-    <input type="text" id="PhoneNumText" placeholder="Phone Number"><br />
+	<input type="checkbox" id="lnameCheckBox" value="Last Name">
+	<input type="text" id="LnameText" placeholder="Last Name"><br />
 
-    <input type="text" id="emailText" placeholder="Email"><br />
+	<input type="checkbox" id="PhoneNumCheckBox" value="Phone Number">
+	<input type="text" id="PhoneNumText" placeholder="Phone Number"><br />
+
+	<input type="checkbox" id="EmailCheckBox" value="Email">
+	<input type="text" id="emailText" placeholder="Email"><br />
 	</div>
+
 
 </body>
 
