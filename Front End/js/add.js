@@ -5,10 +5,17 @@ var extension = 'php';
 var userId = 0;
 var firstName = "";
 var lastName = "";
+var phoneNum = "";
+var email = "";
 
 
 function addContact()
 {
+	var firstName = document.getElementById('FnameText').value;
+	var lastName = document.getElementById('LnameText').value;
+	var phoneNum = document.getElementById('PhoneNumText').value;
+	var email = document.getElementById('emailText').value;
+
 	var newContact = document.getElementById("contactText").value;
 	document.getElementById("contactAddResult").innerHTML = "";
 
@@ -16,15 +23,15 @@ function addContact()
 	var jsonPayload = JSON.stringify( tmp );
 
 	var url = urlBase + '/Add.' + extension;
-	
+
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	try
 	{
-		xhr.onreadystatechange = function() 
+		xhr.onreadystatechange = function()
 		{
-			if (this.readyState == 4 && this.status == 200) 
+			if (this.readyState == 4 && this.status == 200)
 			{
 				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
 			}
@@ -35,5 +42,5 @@ function addContact()
 	{
 		document.getElementById("contactAddResult").innerHTML = err.message;
 	}
-	
+
 }
