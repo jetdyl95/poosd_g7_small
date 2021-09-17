@@ -41,7 +41,7 @@
 
     else
     {
-      returnWithError($searchCount . " records found.");
+      returnWithInfo($searchCount);
     }
 
     $conn->close();
@@ -64,5 +64,10 @@
   {
     $retValue = '{"error":"' . $err . '"}';
     sendResultInfoAsJson( $retValue );
+  }
+
+  function returnWithInfo($searchResults)
+  {
+    sendResultInfoAsJson($searchResults);
   }
  ?>
