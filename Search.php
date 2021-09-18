@@ -25,11 +25,14 @@
 			{
 				$searchResults .= ",";
 			}
+
 			$searchCount++;
+      $searchResults .= '"' . $searchCount . '":{';
       $searchResults .= '"firstName":"' . $row["FirstName"] . '", ';
       $searchResults .= '"lastName":"' . $row["LastName"] . '", ';
       $searchResults .= '"email":"' . $row["Email"] . '", ';
       $searchResults .= '"phone":"' . $row["Phone"] . '"';
+      $searchResults .= '}';
     }
 
 
