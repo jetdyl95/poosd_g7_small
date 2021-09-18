@@ -28,10 +28,11 @@
 
 			$searchCount++;
       $searchResults .= '"' . $searchCount . '":{';
-      $searchResults .= '"firstName":"' . $row["FirstName"] . '", ';
-      $searchResults .= '"lastName":"' . $row["LastName"] . '", ';
-      $searchResults .= '"email":"' . $row["Email"] . '", ';
-      $searchResults .= '"phone":"' . $row["Phone"] . '"';
+      $searchResults .= '"contactId":"' . $row[0] . '", ';
+      $searchResults .= '"firstName":"' . $row[3] . '", ';
+      $searchResults .= '"lastName":"' . $row[4] . '", ';
+      $searchResults .= '"email":"' . $row[5] . '", ';
+      $searchResults .= '"phone":"' . $row[6] . '"';
       $searchResults .= '}';
     }
 
@@ -44,7 +45,6 @@
 
     else
     {
-      //echo($searchResults);
       returnWithInfo($searchResults);
     }
 
