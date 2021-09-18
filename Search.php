@@ -19,7 +19,7 @@
     $searchQuery->execute();
     $result = $searchQuery->get_result();
 
-    while ($row = $result->fetch_assoc())
+    while ($row = $result->fetch_row())
     {
       if( $searchCount > 0 )
 			{
