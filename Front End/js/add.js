@@ -18,10 +18,11 @@ function addContact()
 
 	document.getElementById("contactAddResult").innerHTML = "";
 
-	var tmp = {FirstName:FirstName , LastName: LastName , Email: Email, Phone: Phone,UserID:userId};
+	var tmp = {fields:{FirstName:FirstName , LastName: LastName , Email: Email, Phone: Phone},UserID:userId};
+
 	var jsonPayload = JSON.stringify( tmp );
 
-	var url = urlBase + '/AddTest.' + extension;
+	var url = urlBase + '/Add.' + extension;
 
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
