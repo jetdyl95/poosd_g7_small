@@ -1,9 +1,9 @@
-body 
+body
 {
     background-color: rgb(119, 119, 119);
 }
 
-#title 
+#title
 {
     font-size: 40px;
     width: 100%;
@@ -121,7 +121,10 @@ body
 	font-size: 30px;
 }
 
-
+#contactIdEdit
+{
+        font-size: 30px;
+}
 #FnameText
 {
 	font-size: 30px;
