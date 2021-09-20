@@ -19,17 +19,21 @@
     $searchQuery->execute();
     $result = $searchQuery->get_result();
 
-    while ($row = $result->fetch_assoc())
+    while ($row = $result->fetch_row())
     {
       if( $searchCount > 0 )
 			{
 				$searchResults .= ",";
 			}
+
 			$searchCount++;
-      $searchResults .= '"' . $row["firstName"] . '"';
-      $searchResults .= '"' . $row["lastName"] . '"';
-      $searchResults .= '"' . $row["email"] . '"';
-      $searchResults .= '"' . $row["phone"] . '"';
+      $searchResults .= '"' . $searchCount . '":{';
+      $searchResults .= '"contactId":"' . $row[0] . '", ';
+      $searchResults .= '"firstName":"' . $row[3] . '", ';
+      $searchResults .= '"lastName":"' . $row[4] . '", ';
+      $searchResults .= '"email":"' . $row[5] . '", ';
+      $searchResults .= '"phone":"' . $row[6] . '"';
+      $searchResults .= '}';
     }
 
 
@@ -41,7 +45,7 @@
 
     else
     {
-      returnWithError($searchCount . " records found.");
+      returnWithInfo($searchResults);
     }
 
     $conn->close();
@@ -64,5 +68,11 @@
   {
     $retValue = '{"error":"' . $err . '"}';
     sendResultInfoAsJson( $retValue );
+  }
+
+  function returnWithInfo($searchResults)
+  {
+    $retValue = '{"results":{' . $searchResults . '},"error":""}';
+    sendResultInfoAsJson($retValue);
   }
  ?>

@@ -1,11 +1,17 @@
 <html>
 <head>
 	<title>iContact</title>
-	<script type="text/javascript" src="js/cookie.js"></script>
-	<script type="text/javascript" src="js/edit.js"></script>
+	<script type="text/javascript" src="js/editTest.js"></script>
+	<script type="text/javascript" src="js/test.js"></script>
+
     <link href="css/styles.css" rel="stylesheet">	
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-	
+	<script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() 
+        {
+                readCookie();
+        }, false);
+        </script>	
 </head>
 <style>
 	.dropbtn {
@@ -66,25 +72,29 @@
 		</div>
 	</div>
 
-	<input type="text" id="contactEditText" placeholder="Contact To Edit">
+	<input type="text" id="contactEditText" placeholder="Look-up Contact To Edit">
 	<button type="button" id="editContactButton" class="buttons" onclick="searchContact();"> Search Contact </button><br />
-	<span id="contactSearchResult"></span>
+	<span id="contactEditResult"></span>
 	<p id="contactList">
 	</p><br /><br />
 
-    	<input type="checkbox" id ="fnameCheckBox" value= "First Name">
+
+
+	<input type = "text" id = "contactIdEdit"  placeholder = "Contact Id to Edit"><br />
+	<input type="checkbox" id ="fnameCheckBox">
 	<input type="text" id="FnameText" placeholder="First Name"><br />
 
-	<input type="checkbox" id="lnameCheckBox" value="Last Name">
+	<input type="checkbox" id="lnameCheckBox">
 	<input type="text" id="LnameText" placeholder="Last Name"><br />
 
-	<input type="checkbox" id="PhoneNumCheckBox" value="Phone Number">
+	<input type="checkbox" id="PhoneNumCheckBox">
 	<input type="text" id="PhoneNumText" placeholder="Phone Number"><br />
 
-	<input type="checkbox" id="EmailCheckBox" value="Email">
+	<input type="checkbox" id="EmailCheckBox">
 	<input type="text" id="emailText" placeholder="Email"><br />
+	<button type="button" id="submitChanges" class="buttons" onclick="editContact();"> Submit Changes</button><br />
+	<span id ="submitEditResult"></span>
 	</div>
-
 
 </body>
 

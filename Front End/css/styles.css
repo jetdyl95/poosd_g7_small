@@ -1,13 +1,12 @@
-body
+body 
 {
     background-color: rgb(119, 119, 119);
 }
 
-#title
+#title 
 {
     font-size: 40px;
     width: 100%;
-    margin: 2% 5%;
     text-align: center;
     font-family: 'Ubuntu', sans-serif;
     color: rgb(18, 180, 209);
@@ -16,7 +15,7 @@ body
 
 #loginDiv
 {
-    font-size: 25px;
+    font-size: 30px;
     width: 70%;
     margin-left: 15%;
     padding: 25px;
@@ -93,6 +92,57 @@ body
 {
 	font-size: 30px;
 }
+#contactIdDel
+{
+	font-size: 30px;
+}
+#firstName
+{
+	font-size: 30px;
+}
+#lastName
+{
+	font-size: 30px;
+}
+#registerName
+{
+	font-size: 30px;
+}
+#registerPassword
+{
+	font-size: 30px;
+}
+#login
+{
+	font-size: 30px;
+}
+#password
+{
+	font-size: 30px;
+}
+
+
+#FnameText
+{
+	font-size: 30px;
+}
+#LnameText
+{
+	font-size: 30px;
+}
+#PhoneNumText
+{
+	font-size: 30px;
+}
+#emailText
+{
+	font-size: 30px;
+}
+
+#contactEditText
+{
+	font-size: 30px;
+}
 
 input[type="text"],input[type="password"]{
     border-radius: 25px;
@@ -135,10 +185,6 @@ input[type="text"],input[type="password"]{
 #logoutButton{
     width: 20%;
     margin-left: 40%;
-}
-
-#addButton{
-  margin-left: 25%
 }
 
 select{

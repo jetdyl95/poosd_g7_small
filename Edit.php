@@ -46,7 +46,7 @@
 
     if ($doPhoneEdit)
     {
-      $phoneEdit->bind_param("ss", $input["phone"]);
+      $phoneEdit->bind_param("s", $input["phone"]);
       $phoneEdit->execute();
       $editCount++;
     }
